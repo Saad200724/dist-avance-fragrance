@@ -162,17 +162,10 @@ var insertReviewSchema = createInsertSchema(reviews).omit({
 });
 
 // server/db.ts
-import { Pool, neonConfig } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-serverless";
-import ws from "ws";
-neonConfig.webSocketConstructor = ws;
-if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?"
-  );
-}
-var pool = new Pool({ connectionString: process.env.DATABASE_URL });
-var db = drizzle({ client: pool, schema: schema_exports });
+// Dummy exports for compilation if no database is used
+export const db: any = {}; // Empty object to satisfy any imports of 'db'
+// If your storage class is also defined/instantiated in db.ts and depends on 'db',
+// you might need a mock storage here as well, but usually storage is a separate file.
 
 // server/storage.ts
 import { eq, desc, and, sql } from "drizzle-orm";
