@@ -163,7 +163,7 @@ var insertReviewSchema = createInsertSchema(reviews).omit({
 
 // server/db.ts
 // Dummy exports for compilation if no database is used
-export const db: any = {}; // Empty object to satisfy any imports of 'db'
+export const db = {};
 // If your storage class is also defined/instantiated in db.ts and depends on 'db',
 // you might need a mock storage here as well, but usually storage is a separate file.
 
